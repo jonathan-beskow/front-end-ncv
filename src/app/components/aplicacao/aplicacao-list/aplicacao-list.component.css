@@ -1,24 +1,37 @@
+/* Estilo para a container de cartões */
 .container {
   text-align: center;
   margin-top: 20px;
 }
 
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 cartões por linha */
+  gap: 16px;
+  padding: 0 16px; /* Para dar espaçamento nas laterais */
+}
+
+/* Estilo individual do cartão */
 .card {
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 16px;
-  margin: 16px auto;
-  max-width: 400px;
   background-color: #f9f9f9;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: left;
 }
 
+/* Estilo do título do cartão */
 .card h2 {
   color: #3f51b5;
+  font-size: 1.2rem;
+  margin-bottom: 8px;
 }
 
+/* Estilo do texto e links */
 .card p {
   margin: 8px 0;
+  font-size: 1rem;
 }
 
 .card a {
@@ -29,3 +42,63 @@
 .card a:hover {
   text-decoration: underline;
 }
+
+/* Classes para os status */
+.status-em-desenvolvimento {
+  color: green;
+}
+
+.status-disponibilizada-para-testes {
+  color: blue;
+}
+
+.status-em-homologacao {
+  color: purple;
+}
+
+.status-em-implantacao {
+  color: orange;
+}
+
+.status-implantada {
+  color: black;
+}
+
+.status-impedimento {
+  color: red;
+}
+
+/* Container principal */
+.container {
+  text-align: center;
+  margin-top: 20px;
+  position: relative; /* Necessário para posicionar o botão */
+}
+
+/* Botão de adicionar */
+.add-button {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  background-color: #4caf50; /* Verde claro */
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.add-button:hover {
+  background-color: #45a049; /* Verde um pouco mais escuro no hover */
+}
+
+/* Ícone no botão */
+.add-button mat-icon {
+  font-size: 24px;
+}
+

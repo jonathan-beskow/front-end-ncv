@@ -14,7 +14,8 @@ export class AplicacaoService {
 
 
   findById(id: any): Observable<Aplicacao> {
-    return this.http.get<Aplicacao>(`${API_CONFIG.baseUrl}/tecnicos/${id}`);
+    return this.http.get<Aplicacao>(`${API_CONFIG.baseUrl}/${id}`);
+    console.log(`${API_CONFIG.baseUrl}/${id}`);
   }
 
   findAll(): Observable<Aplicacao[]> {

@@ -1,22 +1,26 @@
+<div class="container">
+  <h1>Lista de Aplicações</h1>
 
-  <div>
-    <div class="container">
-      <h1>Lista de Aplicações</h1>
-      <!-- Mensagem de carregamento -->
-      <div *ngIf="ELEMENT_DATA.length === 0">Carregando aplicações...</div>
+  <!-- Mensagem de carregamento -->
+  <div *ngIf="ELEMENT_DATA.length === 0">Carregando aplicações...</div>
 
-      <!-- Lista de cards -->
-      <div *ngIf="ELEMENT_DATA.length > 0">
-        <div *ngFor="let aplicacao of ELEMENT_DATA" class="card">
-          <a [routerLink]="['/aplicacao', aplicacao.id]">
-            <h2>{{ aplicacao.nomeAplicacao }}</h2>
-          </a>
-          <p><strong>Status:</strong> {{ aplicacao.statusAplicacaoDescricao }}</p>
-          <p><strong>Data de Chegada:</strong> {{ aplicacao.dataChegada }}</p>
-          <a [href]="aplicacao.repositorio" target="_blank">Repositório</a>
-          <br />
-          <a [href]="aplicacao.ic" target="_blank">IC</a>
-        </div>
-      </div>
+  <!-- Lista de cards -->
+  <div *ngIf="ELEMENT_DATA.length > 0" class="card-container">
+    <div *ngFor="let aplicacao of ELEMENT_DATA" class="card">
+      <a [routerLink]="['aplicacao', aplicacao.id ?? '']">
+        <h2>{{ aplicacao.nomeAplicacao }}</h2>
+      </a>
+      <p [ngClass]="getStatusClass(aplicacao.statusAplicacaoDescricao ?? '')">
+        <strong>Status:</strong> {{ aplicacao.statusAplicacaoDescricao ?? 'Desconhecido' }}
+      </p>
+      <p><strong>Data de Chegada:</strong> {{ aplicacao.dataChegada ?? 'Não informada' }}</p>
+      <a [href]="aplicacao.repositorio ?? '#'">Repositório</a>
+      <a [href]="aplicacao.ic ?? '#'">IC</a>
     </div>
   </div>
+
+  <!-- Botão para cadastrar aplicação -->
+  <button class="add-button" mat-fab color="primary" (click)="cadastrarAplicacao()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>

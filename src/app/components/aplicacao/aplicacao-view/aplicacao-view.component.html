@@ -1,17 +1,50 @@
-<div *ngIf="aplicacao">
-  <h1>{{ aplicacao.nomeAplicacao }}</h1>
-  <p><strong>Status:</strong> {{ aplicacao.statusAplicacaoDescricao }}</p>
-  <p><strong>Data de Chegada:</strong> {{ aplicacao.dataChegada }}</p>
-  <p>
-    <strong>Repositório:</strong>
-    <a [href]="aplicacao.repositorio" target="_blank">Clique aqui</a>
-  </p>
-  <p>
-    <strong>IC:</strong>
-    <a [href]="aplicacao.ic" target="_blank">Clique aqui</a>
-  </p>
+<div *ngIf="aplicacao && aplicacao.id" class="aplicacao-container">
+  <h1>{{ aplicacao.nomeAplicacao ?? 'Nome da aplicação não disponível' }}</h1>
+
+  <div class="info-section">
+    <p>
+      <strong>Status:</strong>
+      <span [class]="getStatusClass(aplicacao.statusAplicacaoDescricao ?? '')">
+        {{ aplicacao.statusAplicacaoDescricao ?? 'Status não disponível' }}
+      </span>
+    </p>
+    <p><strong>Data de Chegada:</strong> {{ aplicacao.dataChegada ?? 'Não informada' }}</p>
+    <p><strong>Responsável:</strong> {{ aplicacao.bsResponsavelNome ?? 'Não informado' }}</p>
+  </div>
+
+  <div class="links-section">
+    <p>
+      <strong>Repositório:</strong>
+      <a [href]="aplicacao.repositorio ?? '#'" target="_blank">
+        {{ aplicacao.repositorio ? 'Clique aqui' : 'Não disponível' }}
+      </a>
+    </p>
+    <p>
+      <strong>IC:</strong>
+      <a [href]="aplicacao.ic ?? '#'" target="_blank">
+        {{ aplicacao.ic ? 'Clique aqui' : 'Não disponível' }}
+      </a>
+    </p>
+  </div>
+
+  <div *ngIf="aplicacao.historicoDeMudanca?.length" class="history-section">
+    <h2>Histórico de Mudança</h2>
+    <ul>
+      <li *ngFor="let historico of aplicacao.historicoDeMudanca">
+        <p><strong>Data:</strong> {{ historico.data ?? 'Data não informada' }}</p>
+        <p>
+          <strong>Status:</strong>
+          <span [class]="getStatusClass(historico.statusDescricao ?? '')">
+            {{ historico.statusDescricao ?? 'Status não informado' }}
+          </span>
+        </p>
+      </li>
+    </ul>
+  </div>
 </div>
-<div *ngIf="!aplicacao">
+
+<div *ngIf="!aplicacao || !aplicacao.id" class="loading-container">
   <p>Carregando aplicação ou aplicação não encontrada.</p>
 </div>
+
 <router-outlet></router-outlet>

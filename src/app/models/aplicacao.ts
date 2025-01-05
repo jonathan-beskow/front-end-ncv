@@ -1,11 +1,12 @@
 export interface Aplicacao {
-  id: number;
-  nomeAplicacao: string;
-  dataChegada: string;
+  id: string;
+  nomeAplicacao?: string;
+  dataChegada?: string;
   repositorio: string;
-  ic: string;
-  historicoDeMudanca: any[]; // Atualize para refletir corretamente os objetos recebidos
-  bsResponsavelCodigo: number;
-  statusAplicacaoCodigo: number;
-  statusAplicacaoDescricao: string;
+  ic?: string;
+  historicoDeMudanca?: any[]; // Atualize para refletir corretamente os objetos recebidos
+  bsResponsavelCodigo?: string;
+  statusAplicacaoCodigo?: string;
+  statusAplicacaoDescricao?: string;
+  bsResponsavelNome?: string; // Adicionada propriedade
 }

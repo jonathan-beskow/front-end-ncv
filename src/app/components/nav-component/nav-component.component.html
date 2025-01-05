@@ -1,9 +1,8 @@
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <mat-sidenav-container class="sidenav-container">
   <!-- Menu Lateral -->
   <mat-sidenav #drawer mode="side" [opened]="isOpened" class="sidenav">
-    <mat-toolbar color="primary" class="menu-header"></mat-toolbar>
+    <mat-toolbar color="primary" class="menu-header">Menu</mat-toolbar>
     <mat-nav-list class="nav-list">
       <a mat-list-item routerLink="/" routerLinkActive="active-link">
         <mat-icon>home</mat-icon> Início
@@ -22,7 +21,7 @@
 
   <!-- Conteúdo Principal -->
   <mat-sidenav-content>
-    <mat-toolbar color="primary" class="mat-elevation-z4">
+    <mat-toolbar class="menu-interno" class="mat-elevation-z8">
       <button mat-icon-button (click)="toggleSidenav()" aria-label="Toggle sidenav">
         <mat-icon>menu</mat-icon>
       </button>
