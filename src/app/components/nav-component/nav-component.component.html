@@ -1,0 +1,32 @@
+<mat-sidenav-container class="sidenav-container">
+  <!-- Menu Lateral -->
+  <mat-sidenav #drawer mode="side" [opened]="isOpened" class="sidenav">
+    <mat-toolbar color="primary" class="menu-header"></mat-toolbar>
+    <mat-nav-list class="nav-list">
+      <a mat-list-item routerLink="/" routerLinkActive="active-link">
+        <mat-icon>home</mat-icon> Início
+      </a>
+      <a mat-list-item routerLink="/aplicacoes" routerLinkActive="active-link">
+        <mat-icon>apps</mat-icon> Aplicações
+      </a>
+      <a mat-list-item routerLink="/desenvolvedores" routerLinkActive="active-link">
+        <mat-icon>group</mat-icon> Desenvolvedores
+      </a>
+      <a mat-list-item routerLink="/recursos" routerLinkActive="active-link">
+        <mat-icon>inventory</mat-icon> Recursos
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <!-- Conteúdo Principal -->
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" class="mat-elevation-z4">
+      <button mat-icon-button (click)="toggleSidenav()" aria-label="Toggle sidenav">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <!-- Conteúdo carregado dinamicamente pelas rotas -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

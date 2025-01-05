@@ -1,0 +1,17 @@
+<div *ngIf="aplicacao">
+  <h1>{{ aplicacao.nomeAplicacao }}</h1>
+  <p><strong>Status:</strong> {{ aplicacao.statusAplicacaoDescricao }}</p>
+  <p><strong>Data de Chegada:</strong> {{ aplicacao.dataChegada }}</p>
+  <p>
+    <strong>Repositório:</strong>
+    <a [href]="aplicacao.repositorio" target="_blank">Clique aqui</a>
+  </p>
+  <p>
+    <strong>IC:</strong>
+    <a [href]="aplicacao.ic" target="_blank">Clique aqui</a>
+  </p>
+</div>
+<div *ngIf="!aplicacao">
+  <p>Carregando aplicação ou aplicação não encontrada.</p>
+</div>
+<router-outlet></router-outlet>
