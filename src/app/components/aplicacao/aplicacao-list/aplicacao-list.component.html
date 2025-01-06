@@ -2,27 +2,45 @@
   <h1>Lista de Aplicações</h1>
 
   <!-- Mensagem de carregamento -->
-  <div *ngIf="ELEMENT_DATA.length === 0">Carregando aplicações...</div>
+  <div *ngIf="ELEMENT_DATA.length === 0" class="loading-message">
+    <p>Carregando aplicações...</p>
+  </div>
 
   <!-- Lista de cards -->
   <form>
     <div *ngIf="ELEMENT_DATA.length > 0" class="card-container">
-      <div *ngFor="let aplicacao of ELEMENT_DATA" class="card">
-        <a [routerLink]="[aplicacao.id ?? '']">
-          <h2>{{ aplicacao.nomeAplicacao }}</h2>
-        </a>
+      <p-card *ngFor="let aplicacao of ELEMENT_DATA" class="application-card">
+        <ng-template pTemplate="header">
+          <a [routerLink]="[aplicacao.id ?? '']">
+            <h2>{{ aplicacao.nomeAplicacao }}</h2>
+          </a>
+        </ng-template>
 
-        <p [ngClass]="getStatusClass(aplicacao.statusAplicacaoDescricao ?? '')">
-          <strong>Status:</strong> {{ aplicacao.statusAplicacaoDescricao ?? 'Desconhecido' }}
-        </p>
-        <p><strong>Data de Chegada:</strong> {{ aplicacao.dataChegada ?? 'Não informada' }}</p>
-        <a [href]="aplicacao.repositorio ?? '#'">Repositório</a>
-        <a [href]="aplicacao.ic ?? '#'">IC</a>
-      </div>
+        <ng-template pTemplate="content">
+          <p [ngClass]="getStatusClass(aplicacao.statusAplicacaoDescricao ?? '')">
+            <strong>Status:</strong> {{ aplicacao.statusAplicacaoDescricao ?? 'Desconhecido' }}
+          </p>
+          <p>
+            <strong>Data de Chegada:</strong> {{ aplicacao.dataChegada ?? 'Não informada' }}
+          </p>
+        </ng-template>
+
+        <ng-template pTemplate="footer">
+          <div class="card-footer">
+            <a [href]="aplicacao.repositorio ?? '#'" class="p-button p-button-text">Repositório</a>
+            <a [href]="aplicacao.ic ?? '#'" class="p-button p-button-text">IC</a>
+          </div>
+        </ng-template>
+      </p-card>
     </div>
   </form>
+
   <!-- Botão para cadastrar aplicação -->
-  <button class="add-button" mat-fab color="primary" (click)="cadastrarAplicacao()">
-    <mat-icon>add</mat-icon>
-  </button>
+  <button
+    pButton
+    type="button"
+    icon="pi pi-plus"
+    class="p-button-rounded p-button-primary add-button"
+    (click)="cadastrarAplicacao()"
+  ></button>
 </div>

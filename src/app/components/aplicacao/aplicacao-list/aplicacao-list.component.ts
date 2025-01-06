@@ -6,16 +6,19 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-aplicacao-list',
-  imports: [SHARED_IMPORTS],
+  standalone: true,
+  imports: [
+    ...SHARED_IMPORTS // Expande os módulos compartilhados
+  ],
   templateUrl: './aplicacao-list.component.html',
   styleUrls: ['./aplicacao-list.component.css']
 })
 export class AplicacaoListComponent {
-
   ELEMENT_DATA: Aplicacao[] = [];
 
-  constructor(private aplicacaoService: AplicacaoService,
-              private router: Router
+  constructor(
+    private aplicacaoService: AplicacaoService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -37,8 +40,6 @@ export class AplicacaoListComponent {
   cadastrarAplicacao(): void {
     this.router.navigate(['/criar']); // Caminho configurado nas rotas
   }
-
-
 
   getStatusClass(status: string): string {
     switch (status) {

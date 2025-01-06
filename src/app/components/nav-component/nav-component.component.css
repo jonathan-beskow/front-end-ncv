@@ -1,113 +1,72 @@
-/* Container do Sidenav */
-.sidenav-container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Sidenav (menu lateral) */
-.sidenav {
+/* Sidebar Menu */
+.p-sidebar-menu {
   width: 250px;
-  background: linear-gradient(to bottom, #0062cc, #004c99); /* Azul escuro com gradiente */
-  padding-top: 2rem;
-  transition: width 0.3s ease; /* Animação suave de transição */
+  background-color: var(--surface-a);
+  color: var(--text-color);
+  border-right: 1px solid var(--surface-d);
+  z-index: 10000;
 }
 
-/* Links no menu lateral */
-.sidenav a {
-  color: white; /* Texto branco */
-  font-size: 1.1rem;
-  padding: 1rem;
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  transition: background-color 0.3s; /* Efeito suave ao passar o mouse */
-}
-
-.sidenav a:hover {
-  background-color: rgba(255, 255, 255, 0.1); /* Cor suave ao passar o mouse */
-}
-
-.sidenav mat-icon {
-  margin-right: 1rem;
-  color: white; /* Ícones brancos */
-}
-
-/* Link ativo */
-.sidenav .active-link {
-  background-color: rgba(255, 255, 255, 0.2); /* Cor de fundo ativa */
-}
-
-/* Menu header */
-.menu-header {
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-align: center;
-  padding: 1rem;
-  color: white; /* Texto da header branco */
-  border-bottom: 2px solid rgba(255, 255, 255, 0.2); /* Linha separadora */
-}
-
-/* Lista de navegação */
-.nav-list {
-  padding-top: 1rem;
-}
-
-/* Conteúdo principal */
-.mat-sidenav-content {
-  background-color: #f4f4f4; /* Cor de fundo do conteúdo principal */
-  color: black; /* Texto preto para contraste */
-  padding: 20px; /* Padding para o conteúdo */
-  height: 100vh; /* Altura total */
-  overflow: auto; /* Scroll se necessário */
-}
-
-/* Toolbar (barra superior) */
-.mat-toolbar {
-  background-color: white; /* Cor de fundo da toolbar */
-  color: black; /* Texto preto para contraste */
+/* Sidebar Toolbar */
+.p-toolbar-menu {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 1rem;
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  background-color: var(--surface-b);
+  color: var(--text-color-secondary);
+  font-size: 1.25rem;
+  font-weight: bold;
+  padding: 1rem;
 }
 
-.menu-interno {
-  background-color: white; /* Cor de fundo da toolbar */
-  color: red; /* Texto preto para contraste */
+/* Sidebar Menu List */
+.p-menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.p-menu-item {
   display: flex;
-  justify-content: center;
   align-items: center;
-  padding: 0 1rem;
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  padding: 0.75rem 1rem;
+  border-radius: var(--border-radius);
+  color: var(--text-color);
+  text-decoration: none;
+  transition: background-color 0.2s ease;
 }
 
-/* Botão de menu (no toolbar) */
-button.mat-icon-button {
-  background-color: transparent;
-  color: #2196F3; /* Azul para o ícone */
-  border: none;
-  border-radius: 50%; /* Botão circular */
-  padding: 10px;
-  transition: background-color 0.3s; /* Efeito suave ao passar o mouse */
+.p-menu-item:hover {
+  background-color: var(--surface-d);
 }
 
-button.mat-icon-button:hover {
-  background-color: rgba(33, 150, 243, 0.1); /* Fundo azul claro ao hover */
+/* Menu Item Icon */
+.p-menu-icon {
+  margin-right: 0.75rem;
+  font-size: 1.25rem;
 }
 
-.mat-icon {
-  font-size: 24px; /* Tamanho do ícone */
+/* Active Link */
+.active-link {
+  font-weight: bold;
+  color: var(--primary-color) !important;
 }
 
-/* Efeito ao passar o mouse no botão */
-button.mat-icon-button:focus {
-  outline: none; /* Remove a borda padrão ao focar */
+/* Toolbar Content */
+.p-toolbar-content {
+  background-color: var(--surface-b);
+  border-bottom: 1px solid var(--surface-d);
+  padding: 1rem;
 }
 
-/* Quando o Sidenav estiver fechado */
-.sidenav-closed {
-  width: 60px; /* Largura do menu fechado */
+/* Button Styles */
+.p-button-rounded {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
 }
 
+.p-button-rounded:hover {
+  background-color: var(--primary-color-dark);
+}

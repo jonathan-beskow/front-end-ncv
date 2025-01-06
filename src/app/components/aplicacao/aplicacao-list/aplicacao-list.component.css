@@ -1,104 +1,92 @@
-/* Estilo para a container de cartões */
 .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  color: var(--text-color); /* Define a cor do texto padrão */
+}
+
+h1 {
   text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: var(--primary-color); /* Cor principal para o título */
+}
+
+.loading-message {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--text-color-secondary); /* Cor de destaque para mensagens de carregamento */
+}
+
+/* Estilo para os cards */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Ajusta a largura dos cards */
+  gap: 20px;
   margin-top: 20px;
 }
 
-.card-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 cartões por linha */
-  gap: 16px;
-  padding: 0 16px; /* Para dar espaçamento nas laterais */
+.application-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--surface-a); /* Fundo padrão */
+  border: 1px solid var(--surface-d); /* Borda sutil */
+  border-radius: var(--border-radius); /* Bordas arredondadas */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
+  overflow: hidden; /* Garante que os elementos internos respeitem o limite */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Estilo individual do cartão */
-.card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 16px;
-  background-color: #f9f9f9;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  text-align: left;
+.application-card:hover {
+  transform: translateY(-5px); /* Animação de "elevação" ao passar o mouse */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra mais intensa no hover */
 }
 
-/* Estilo do título do cartão */
-.card h2 {
-  color: #3f51b5;
-  font-size: 1.2rem;
-  margin-bottom: 8px;
+.application-card h2 {
+  font-size: 1.5rem;
+  margin: 0;
+  padding: 15px;
+  color: var(--primary-color); /* Cor principal para os títulos dos cards */
+  cursor: pointer; /* Indica que o texto é clicável */
 }
 
-/* Estilo do texto e links */
-.card p {
-  margin: 8px 0;
-  font-size: 1rem;
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+  background-color: var(--surface-b); /* Fundo do footer */
+  border-top: 1px solid var(--surface-d);
 }
 
-.card a {
-  color: #1976d2;
+.card-footer a {
   text-decoration: none;
+  font-size: 0.9rem;
+  color: var(--primary-color);
+  transition: color 0.2s ease;
 }
 
-.card a:hover {
+.card-footer a:hover {
+  color: var(--primary-color-dark); /* Cor mais escura no hover */
   text-decoration: underline;
 }
 
-/* Classes para os status */
-.status-em-desenvolvimento {
-  color: green;
-}
-
-.status-disponibilizada-para-testes {
-  color: blue;
-}
-
-.status-em-homologacao {
-  color: purple;
-}
-
-.status-em-implantacao {
-  color: orange;
-}
-
-.status-implantada {
-  color: black;
-}
-
-.status-impedimento {
-  color: red;
-}
-
-/* Container principal */
-.container {
-  text-align: center;
-  margin-top: 20px;
-  position: relative; /* Necessário para posicionar o botão */
-}
-
-/* Botão de adicionar */
 .add-button {
   position: fixed;
-  bottom: 16px;
-  right: 16px;
-  background-color: #4caf50; /* Verde claro */
-  color: white;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  border-radius: 50%;
-  width: 56px;
-  height: 56px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  cursor: pointer;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000; /* Garante que o botão esteja acima de outros elementos */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
 }
 
-.add-button:hover {
-  background-color: #45a049; /* Verde um pouco mais escuro no hover */
-}
+/* Responsividade */
+@media (max-width: 768px) {
+  .card-container {
+    grid-template-columns: 1fr; /* Cards ocupam 100% da largura em telas menores */
+  }
 
-/* Ícone no botão */
-.add-button mat-icon {
-  font-size: 24px;
+  .add-button {
+    bottom: 15px;
+    right: 15px;
+  }
 }
-
