@@ -1,1 +1,40 @@
-<p>aplicacao-update works!</p>
+<form class="form" #form="ngForm">
+  <mat-form-field class="full-width" appearance="outline">
+    <mat-label>Nome da Aplicação</mat-label>
+    <input matInput
+    [(ngModel)]="aplicacao.nomeAplicacao" name="nomeAplicacao"> {{ aplicacao.nomeAplicacao }}
+  </mat-form-field>
+
+  <mat-form-field class="full-width" appearance="outline">
+    <mat-label>Repositório SVN</mat-label>
+    <input matInput placeholder="LEXW-BsLexWeb" [(ngModel)]="aplicacao.repositorio" name="repositorio">
+  </mat-form-field>
+
+  <mat-form-field class="full-width" appearance="outline">
+    <mat-label>Página do IC</mat-label>
+    <input matInput placeholder="LEXW-BsLexWeb" [(ngModel)]="aplicacao.ic" name="ic">
+  </mat-form-field>
+
+  <mat-form-field class="selectbs" appearance="outline">
+    <mat-label>Selecione o Responsável da BS:</mat-label>
+    <select matNativeControl required [(ngModel)]="aplicacao.bsResponsavelCodigo" name="bsResponsavelCodigo">
+      <option value="0">Alex</option>
+      <option value="1">Camila</option>
+      <option value="2">Leila</option>
+      <option value="3">Ricardo</option>
+    </select>
+  </mat-form-field>
+
+      <button
+      type="button"
+      (click)="update()"
+      class="botoes mat-elevation-z4"
+      mat-raised-button
+      color="primary">
+      Adicionar Aplicação
+    </button>
+
+
+    <button routerLink="../" class="botoes mat-elevation-z4" mat-stroked-button color="warn" type="button">Cancelar</button>
+
+</form>

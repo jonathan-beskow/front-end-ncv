@@ -26,4 +26,8 @@ export class AplicacaoService {
     return this.http.post<Aplicacao>(`${API_CONFIG.baseUrl}/create`, aplicacao)
   }
 
+  update(chamado: Aplicacao): Observable<Aplicacao> {
+    return this.http.put<Aplicacao>(`${API_CONFIG.baseUrl}/${chamado.id}`, chamado);
+  }
+
 }

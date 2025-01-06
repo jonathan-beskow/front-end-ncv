@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AplicacaoService } from '../../../services/aplicacao.service';
 import { SHARED_IMPORTS } from '../../../shared-imports';
 import { Aplicacao } from './../../../models/aplicacao';
@@ -24,7 +24,8 @@ export class AplicacaoViewComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private aplicacaoService: AplicacaoService
+    private aplicacaoService: AplicacaoService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -33,6 +34,10 @@ export class AplicacaoViewComponent implements OnInit {
       this.aplicacao.id = id;
       this.findById();
     }
+  }
+
+  editar(): void {
+    this.router.navigate(['atualizar/:id']); // Caminho configurado nas rotas
   }
 
   // Método para buscar a aplicação pelo ID

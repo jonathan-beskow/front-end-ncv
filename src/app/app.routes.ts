@@ -4,6 +4,7 @@ import { AppComponent } from './components/app-component/app.component';
 import { NavComponentComponent } from './components/nav-component/nav-component.component';
 import { AplicacaoListComponent } from './components/aplicacao/aplicacao-list/aplicacao-list.component';
 import { AplicacaoCreateComponent } from './components/aplicacao/aplicacao-create/aplicacao-create.component';
+import { AplicacaoUpdateComponent } from './components/aplicacao/aplicacao-update/aplicacao-update.component';
 
 export const routes: Routes = [
   {
@@ -14,6 +15,7 @@ export const routes: Routes = [
       { path: 'aplicacoes', component: AplicacaoListComponent }, // Listagem de aplicações
       { path: 'aplicacoes/:id', component: AplicacaoViewComponent }, // Detalhes da aplicação
       { path: 'criar', component: AplicacaoCreateComponent },
+      { path: 'atualizar/:id', component: AplicacaoUpdateComponent },
     ],
   },
 ];
