@@ -31,14 +31,13 @@ export class AplicacaoCreateComponent {
     nomeAplicacao: '',
     repositorio: '',
     ic: '',
-    bsResponsavelCodigo: 1,
-    statusAplicacaoCodigo: 0,
+    bsResponsavelCodigo: 0
   };
 
   create(): void {
     this.aplicacaoService.create(this.aplicacao).subscribe(
       (resposta) => {
-        this.router.navigate(['aplicacoes']);
+        console.log(this.aplicacao)
       },
       (ex) => {
         console.log(ex);
