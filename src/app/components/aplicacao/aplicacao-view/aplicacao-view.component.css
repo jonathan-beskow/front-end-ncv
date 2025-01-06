@@ -1,82 +1,76 @@
 .aplicacao-container {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #f9f9f9;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  margin: 16px;
 }
 
-h1 {
+/* Card de detalhes da aplicação */
+.aplicacao-card {
+  flex: 1;
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid #e0e0e0;
+}
+
+.aplicacao-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+  position: absolute;
+  top: 8px;
+  right: 8px; /* Move o ícone para o lado direito */
+}
+
+.edit-button {
+  color: #2196f3; /* Azul */
+}
+
+/* Card de histórico de mudança */
+.historico-card {
+  flex: 1;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid #e0e0e0;
+}
+
+.historico-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.history-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.25rem;
   color: #3f51b5;
+  margin-bottom: 16px;
+}
+
+.history-item {
+  margin-bottom: 16px;
+}
+
+/* Título da aplicação */
+.aplicacao-title {
   text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #3f51b5;
+  margin-bottom: 16px;
 }
 
-.info-section, .links-section, .history-section {
-  margin-top: 20px;
+/* Links e informações principais */
+.info-section p {
+  margin: 8px 0;
 }
 
-p {
-  margin: 10px 0;
+.links-section p {
+  margin: 4px 0; /* Ajusta o espaçamento entre os links */
 }
 
-a {
-  color: #1976d2;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-}
-
-li {
-  background: #fff;
-  margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-h2 {
-  color: #2c3e50;
-  margin-bottom: 10px;
-}
-
-.loading-container {
-  text-align: center;
-  margin-top: 50px;
-  font-size: 1.2rem;
-  color: #555;
-}
-
-/* Status classes */
-.status-em-desenvolvimento {
-  color: green;
-}
-
-.status-disponibilizada-para-testes {
-  color: blue;
-}
-
-.status-em-homologacao {
-  color: purple;
-}
-
-.status-em-implantacao {
-  color: orange;
-}
-
-.status-implantada {
-  color: black;
-}
-
-.status-impedimento {
-  color: red;
+.links-section a {
+  display: block; /* Cada link em uma nova linha */
+  margin-left: 8px; /* Identação para alinhamento */
 }

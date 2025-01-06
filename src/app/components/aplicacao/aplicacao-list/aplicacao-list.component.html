@@ -3,44 +3,49 @@
 
   <!-- Mensagem de carregamento -->
   <div *ngIf="ELEMENT_DATA.length === 0" class="loading-message">
-    <p>Carregando aplicações...</p>
+    <mat-card appearance="outlined">
+      <mat-card-content>
+        <p>Carregando aplicações...</p>
+      </mat-card-content>
+    </mat-card>
   </div>
 
   <!-- Lista de cards -->
-  <form>
-    <div *ngIf="ELEMENT_DATA.length > 0" class="card-container">
-      <p-card *ngFor="let aplicacao of ELEMENT_DATA" class="application-card">
-        <ng-template pTemplate="header">
-          <a [routerLink]="[aplicacao.id ?? '']">
-            <h2>{{ aplicacao.nomeAplicacao }}</h2>
-          </a>
-        </ng-template>
+  <div *ngIf="ELEMENT_DATA.length > 0" class="card-container">
+    <mat-card
+      *ngFor="let aplicacao of ELEMENT_DATA"
+      appearance="outlined"
+      class="application-card"
+      [ngClass]="getStatusClass(aplicacao.statusAplicacaoDescricao || '')"
+    >
+      <mat-card-header class="card-header">
+        <mat-card-title class="card-title">
+          <a [routerLink]="[aplicacao.id ?? '']">{{ aplicacao.nomeAplicacao }}</a>
+        </mat-card-title>
+      </mat-card-header>
 
-        <ng-template pTemplate="content">
-          <p [ngClass]="getStatusClass(aplicacao.statusAplicacaoDescricao ?? '')">
-            <strong>Status:</strong> {{ aplicacao.statusAplicacaoDescricao ?? 'Desconhecido' }}
-          </p>
-          <p>
-            <strong>Data de Chegada:</strong> {{ aplicacao.dataChegada ?? 'Não informada' }}
-          </p>
-        </ng-template>
+      <mat-card-content>
+        <p>
+          <strong>Status:</strong> {{ aplicacao.statusAplicacaoDescricao || 'Desconhecido' }}
+        </p>
+        <p>
+          <strong>Data de Chegada:</strong> {{ aplicacao.dataChegada || 'Não informada' }}
+        </p>
+      </mat-card-content>
 
-        <ng-template pTemplate="footer">
-          <div class="card-footer">
-            <a [href]="aplicacao.repositorio ?? '#'" class="p-button p-button-text">Repositório</a>
-            <a [href]="aplicacao.ic ?? '#'" class="p-button p-button-text">IC</a>
-          </div>
-        </ng-template>
-      </p-card>
-    </div>
-  </form>
+      <mat-card-actions class="card-actions">
+        <a mat-button color="primary" [href]="aplicacao.repositorio || '#'" target="_blank">
+          Repositório
+        </a>
+        <a mat-button color="primary" [href]="aplicacao.ic || '#'" target="_blank">
+          IC
+        </a>
+      </mat-card-actions>
+    </mat-card>
+  </div>
 
   <!-- Botão para cadastrar aplicação -->
-  <button
-    pButton
-    type="button"
-    icon="pi pi-plus"
-    class="p-button-rounded p-button-primary add-button"
-    (click)="cadastrarAplicacao()"
-  ></button>
+  <button mat-fab color="primary" class="add-button" (click)="cadastrarAplicacao()">
+    <mat-icon>add</mat-icon>
+  </button>
 </div>

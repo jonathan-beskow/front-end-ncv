@@ -1,45 +1,41 @@
-<p-sidebar [(visible)]="isOpened" [baseZIndex]="10000" styleClass="p-sidebar-menu" [modal]="false">
-  <p-toolbar styleClass="p-toolbar-menu">
-    <div class="p-toolbar-group-left">
-      <span class="p-menu-title">Menu</span>
+<mat-drawer-container class="sidenav-container">
+  <!-- Lado do menu -->
+  <mat-drawer #sidenav class="sidenav" mode="side" [(opened)]="isOpened">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/" routerLinkActive="active-link">
+        <i class="material-icons">home</i>
+        Início
+      </a>
+      <a mat-list-item routerLink="/aplicacoes" routerLinkActive="active-link">
+        <i class="material-icons">apps</i>
+        Aplicações
+      </a>
+      <a mat-list-item routerLink="/criar" routerLinkActive="active-link">
+        <i class="material-icons">add_circle</i>
+        Adicionar Aplicação
+      </a>
+      <a mat-list-item routerLink="/desenvolvedores" routerLinkActive="active-link">
+        <i class="material-icons">group</i>
+        Desenvolvedores
+      </a>
+      <a mat-list-item routerLink="/recursos" routerLinkActive="active-link">
+        <i class="material-icons">inventory</i>
+        Recursos
+      </a>
+    </mat-nav-list>
+  </mat-drawer>
+
+  <!-- Conteúdo Principal -->
+  <mat-drawer-content>
+    <mat-toolbar color="primary" class="toolbar">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Aplicação</span>
+    </mat-toolbar>
+
+    <div class="content">
+      <router-outlet></router-outlet>
     </div>
-  </p-toolbar>
-
-  <ul class="p-menu-list">
-    <li>
-      <a routerLink="/" routerLinkActive="active-link" class="p-menu-item">
-        <i class="pi pi-home p-menu-icon"></i> <span>Início</span>
-      </a>
-    </li>
-    <li>
-      <a routerLink="/aplicacoes" routerLinkActive="active-link" class="p-menu-item">
-        <i class="pi pi-th-large p-menu-icon"></i> <span>Aplicações</span>
-      </a>
-    </li>
-    <li>
-      <a routerLink="/criar" routerLinkActive="active-link" class="p-menu-item">
-        <i class="pi pi-plus p-menu-icon"></i> <span>Adicionar Aplicação</span>
-      </a>
-    </li>
-    <li>
-      <a routerLink="/desenvolvedores" routerLinkActive="active-link" class="p-menu-item">
-        <i class="pi pi-users p-menu-icon"></i> <span>Desenvolvedores</span>
-      </a>
-    </li>
-    <li>
-      <a routerLink="/recursos" routerLinkActive="active-link" class="p-menu-item">
-        <i class="pi pi-box p-menu-icon"></i> <span>Recursos</span>
-      </a>
-    </li>
-  </ul>
-</p-sidebar>
-
-<div class="main-container">
-  <p-toolbar styleClass="p-toolbar-content">
-    <button pButton type="button" icon="pi pi-bars" (click)="toggleSidenav()" class="p-button-rounded p-button-text"></button>
-  </p-toolbar>
-
-  <div class="p-content">
-    <router-outlet></router-outlet>
-  </div>
-</div>
+  </mat-drawer-content>
+</mat-drawer-container>

@@ -19,11 +19,13 @@ import { MatIconModule } from '@angular/material/icon';
 export class NavComponentComponent {
   isOpened: boolean = true;
 
+  toggleSidenav() {
+    this.isOpened = !this.isOpened;
+    console.log('Menu lateral', this.isOpened ? 'aberto' : 'fechado');
+  }
+
   ngOnInit(): void {
     console.log("nav bar");
   }
 
-  toggleSidenav() {
-    this.isOpened = !this.isOpened;
-  }
 }
