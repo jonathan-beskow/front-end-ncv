@@ -21,11 +21,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { NavComponentComponent } from './app/components/nav-component/nav-component.component';
+import { FormsModule } from '@angular/forms';
+
 bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routes),
     provideHttpClient(),
-    importProvidersFrom(BrowserAnimationsModule),
+    importProvidersFrom(
+      BrowserAnimationsModule,
+      FormsModule // Certifique-se de adicionar aqui
+    ),
     RouterModule,
     MatButtonModule,
     MatPaginatorModule,
@@ -43,3 +48,4 @@ bootstrapApplication(AppComponent, {
     MatCardModule,
   ],
 }).catch((err) => console.error(err));
+

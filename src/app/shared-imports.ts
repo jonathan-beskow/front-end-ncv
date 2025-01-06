@@ -1,22 +1,21 @@
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatSelectModule } from '@angular/material/select';
-import { MatTableModule } from '@angular/material/table';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatInputModule } from '@angular/material/input';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
-import { NavComponentComponent } from './components/nav-component/nav-component.component';
-import { RouterOutlet } from '@angular/router';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { AppComponent } from './components/app-component/app.component';
+import { NavComponentComponent } from './components/nav-component/nav-component.component';
 export const SHARED_IMPORTS = [
   CommonModule,
   RouterModule,
@@ -36,5 +35,6 @@ export const SHARED_IMPORTS = [
   MatCardModule,
   NavComponentComponent,
   RouterOutlet,
-  AppComponent
+  AppComponent,
+
 ];

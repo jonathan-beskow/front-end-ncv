@@ -22,4 +22,8 @@ export class AplicacaoService {
     return this.http.get<Aplicacao[]>(`${API_CONFIG.baseUrl}`);
   }
 
+  create(aplicacao: Aplicacao): Observable<Aplicacao> {
+    return this.http.post<Aplicacao>(`${API_CONFIG.baseUrl}/create`, aplicacao)
+  }
+
 }

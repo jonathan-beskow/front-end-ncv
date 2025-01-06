@@ -11,9 +11,9 @@ export const routes: Routes = [
     component: NavComponentComponent, // Componente shell
     children: [
       { path: '', component: AppComponent }, // Página inicial
-      { path: 'aplicacao/:id', component: AplicacaoViewComponent }, // Detalhes da aplicação
       { path: 'aplicacoes', component: AplicacaoListComponent }, // Listagem de aplicações
-      { path: 'aplicacoes/create', component: AplicacaoCreateComponent },
+      { path: 'aplicacoes/:id', component: AplicacaoViewComponent }, // Detalhes da aplicação
+      { path: 'criar', component: AplicacaoCreateComponent },
     ],
   },
 ];

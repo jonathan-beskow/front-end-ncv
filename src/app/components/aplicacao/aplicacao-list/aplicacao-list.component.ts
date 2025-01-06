@@ -35,8 +35,7 @@ export class AplicacaoListComponent {
   }
 
   cadastrarAplicacao(): void {
-    // Navega para a página de cadastro (ajuste a rota conforme necessário)
-    this.router.navigate(['/aplicacoes/create']);
+    this.router.navigate(['/criar']); // Caminho configurado nas rotas
   }
 
 

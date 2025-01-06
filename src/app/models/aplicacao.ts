@@ -5,8 +5,8 @@ export interface Aplicacao {
   repositorio: string;
   ic?: string;
   historicoDeMudanca?: any[]; // Atualize para refletir corretamente os objetos recebidos
-  bsResponsavelCodigo?: string;
-  statusAplicacaoCodigo?: string;
+  bsResponsavelCodigo?: any;
+  statusAplicacaoCodigo?: any;
   statusAplicacaoDescricao?: string;
-  bsResponsavelNome?: string; // Adicionada propriedade
+  bsResponsavelNome?: String; // Adicionada propriedade
 }

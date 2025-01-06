@@ -19,8 +19,6 @@ export class AplicacaoViewComponent implements OnInit {
     repositorio: "",
     ic: "",
     historicoDeMudanca: [], // Atualize para refletir corretamente os objetos recebidos
-    bsResponsavelCodigo: "",
-    statusAplicacaoCodigo: "",
     statusAplicacaoDescricao: "",
   };
 
@@ -30,24 +28,26 @@ export class AplicacaoViewComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Captura o ID da aplicação da URL
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.aplicacao.id = id; // Atribui o ID à variável de aplicação
-      this.findById(); // Chama o método para buscar a aplicação
+      this.aplicacao.id = id;
+      this.findById();
     }
   }
 
   // Método para buscar a aplicação pelo ID
   findById(): void {
-    this.aplicacaoService.findById(this.aplicacao.id).subscribe(
-      (resposta) => {
-        this.aplicacao = resposta; // Atualiza os dados da aplicação
-      },
-      (erro) => {
-        console.error("Houve algum erro ao carregar a aplicação:", erro);
-      }
-    );
+    const id = Number(this.route.snapshot.paramMap.get('id')); // Converta para número
+    if (!isNaN(id)) {
+      this.aplicacaoService.findById(id).subscribe(
+        (resposta) => {
+          this.aplicacao = resposta;
+        },
+        (error) => {
+          console.error("Houve algum erro ao carregar a aplicação:", error);
+        }
+      );
+    }
   }
 
   getStatusClass(status: string): string {
