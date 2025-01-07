@@ -67,16 +67,12 @@
   </mat-card>
 
   <!-- Novo Card: Horas na Aplicação -->
-  <mat-card appearance="outlined" class="horas-card">
-    <mat-card-title class="horas-title">Horas na Aplicação</mat-card-title>
-    <mat-card-content>
-      <!-- Total de Horas -->
-      <p>
-        <strong>Total de Horas:</strong>
-        {{ totalHoras || 'Carregando...' }}
-      </p>
-
-      <!-- Detalhes por Desenvolvedor -->
+<mat-card appearance="outlined" class="horas-card">
+  <mat-card-title class="horas-title">Horas na Aplicação</mat-card-title>
+  <mat-card-content class="horas-content">
+    <!-- Lado esquerdo: Detalhes por Desenvolvedor -->
+    <div class="horas-detalhes">
+      <p><strong>Total de Horas:</strong> {{ totalHoras || 'Carregando...' }}</p>
       <div *ngIf="horasDetalhadas?.length; else noHoras">
         <div *ngFor="let desenvolvedor of horasDetalhadas">
           <h4>
@@ -94,6 +90,30 @@
       <ng-template #noHoras>
         <p>Nenhuma hora lançada nesta aplicação.</p>
       </ng-template>
-    </mat-card-content>
-  </mat-card>
-</div>
+    </div>
+
+    <!-- Lado direito: Formulário para adicionar horas -->
+    <div class="horas-form">
+      <mat-form-field appearance="outline">
+        <mat-label>Desenvolvedor</mat-label>
+        <mat-select [(ngModel)]="novoLancamento.desenvolvedor" name="desenvolvedor">
+          <mat-option *ngFor="let dev of desenvolvedores" [value]="dev">{{ dev }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Data</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="novoLancamento.dataLancamento" name="dataLancamento">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Horas</mat-label>
+        <input matInput type="number" [(ngModel)]="novoLancamento.horas" name="horas">
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click)="cadastrarHoras()">Cadastrar</button>
+    </div>
+  </mat-card-content>
+</mat-card>

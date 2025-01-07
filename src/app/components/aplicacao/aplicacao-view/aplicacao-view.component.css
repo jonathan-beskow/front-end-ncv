@@ -101,3 +101,61 @@
   font-size: 1rem;
   color: gray;
 }
+
+.horas-content {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.horas-detalhes {
+  flex: 1;
+}
+
+.horas-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.horas-total {
+  font-weight: normal;
+  font-size: 0.9rem;
+  color: gray;
+}
+
+mat-form-field {
+  width: 100%;
+}
+.status-em-desenvolvimento {
+  color: orange;
+  font-weight: bold;
+}
+
+.status-disponibilizada-para-testes {
+  color: blue;
+}
+
+.status-em-homologacao {
+  color: purple;
+}
+
+.status-em-implantacao {
+  color: teal;
+}
+
+.status-implantada {
+  color: green;
+  font-weight: bold;
+}
+
+.status-impedimento {
+  color: red;
+  font-weight: bold;
+}
+
+.status-default {
+  color: gray;
+}
+

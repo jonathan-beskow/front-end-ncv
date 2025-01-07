@@ -39,6 +39,7 @@ export class AplicacaoUpdateComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log("chegou no aplicacao update");
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.aplicacao.id = id;
@@ -52,7 +53,6 @@ export class AplicacaoUpdateComponent implements OnInit {
       this.aplicacaoService.findById(id).subscribe(
         (resposta) => {
           this.aplicacao = resposta;
-          this.router.navigate(['/aplicacoes']);
         },
         (error) => {
           console.error('Houve algum erro ao carregar a aplicação:', error);

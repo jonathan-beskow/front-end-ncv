@@ -24,6 +24,13 @@ export class AplicacaoViewComponent implements OnInit {
 
   totalHoras: number | null = null;
   horasDetalhadas: any = [];
+  desenvolvedores: string[] = ['Jonathan', 'Felipe', 'Glauber', 'Fernando', 'Ana', 'Anderson', 'Deise', 'Glauber A.', 'Wesley'];
+
+  novoLancamento = {
+    desenvolvedor: '',
+    horas: 0,
+    dataLancamento: '',
+  };
 
   constructor(
     private route: ActivatedRoute,
@@ -88,22 +95,42 @@ export class AplicacaoViewComponent implements OnInit {
     return horas.reduce((total, detalhe) => total + detalhe.quantidade, 0);
   }
 
+  // Método para cadastrar horas
+  cadastrarHoras(): void {
+    if (!this.novoLancamento.desenvolvedor || this.novoLancamento.horas <= 0 || !this.novoLancamento.dataLancamento) {
+      alert('Preencha todos os campos corretamente!');
+      return;
+    }
+
+    const id = this.aplicacao.id;
+    this.aplicacaoService.addHorasAplicacao(Number(id), this.novoLancamento).subscribe(
+      () => {
+        alert('Horas cadastradas com sucesso!');
+        this.loadHoras(id); // Atualiza a lista de horas após o cadastro
+      },
+      (error) => {
+        console.error("Erro ao cadastrar horas:", error);
+        alert('Erro ao cadastrar horas. Tente novamente.');
+      }
+    );
+  }
+
   getStatusClass(status: string): string {
-    switch (status) {
-      case 'Em Desenvolvimento':
+    switch (status.toLowerCase()) {
+      case 'em desenvolvimento':
         return 'status-em-desenvolvimento';
-      case 'Disponibilizada para testes':
+      case 'disponibilizada para testes':
         return 'status-disponibilizada-para-testes';
-      case 'Em Homologação':
+      case 'em homologação':
         return 'status-em-homologacao';
-      case 'Em Implantação':
+      case 'em implantação':
         return 'status-em-implantacao';
-      case 'IMPLANTADA':
+      case 'implantada':
         return 'status-implantada';
-      case 'IMPEDIMENTO':
+      case 'impedimento':
         return 'status-impedimento';
       default:
-        return '';
+        return 'status-default'; // Classe padrão caso o status não seja reconhecido
     }
   }
 }

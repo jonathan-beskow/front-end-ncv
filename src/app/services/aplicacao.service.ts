@@ -37,9 +37,10 @@ export class AplicacaoService {
     return this.http.get<any>(`${API_CONFIG.baseUrl}/${id}/horas/totais`);
   }
 
-  addHorasAplicacao(id: number, horas: number): Observable<any> {
-    return this.http.post<any>(`${API_CONFIG.baseUrl}/${id}/horas`, { horas });
+  addHorasAplicacao(id: number, lancamento: { desenvolvedor: string; horas: number; dataLancamento: string }): Observable<any> {
+    return this.http.post<any>(`${API_CONFIG.baseUrl}/${id}/horas`, lancamento);
   }
+
 
 
 }

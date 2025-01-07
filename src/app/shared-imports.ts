@@ -18,21 +18,16 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 // PrimeNG Modules
-import { ButtonModule } from 'primeng/button';
-import { CardModule } from 'primeng/card';
-import { ListboxModule } from 'primeng/listbox';
-import { MenubarModule } from 'primeng/menubar';
-import { SidebarModule } from 'primeng/sidebar';
-import { ToolbarModule } from 'primeng/toolbar';
+import { FormsModule } from '@angular/forms';
+import { MatNativeDateModule } from '@angular/material/core';
 
 // Components
 
+import { MatDatepickerModule } from '@angular/material/datepicker';
+
 export const SHARED_IMPORTS = [
-  // Angular Common Modules
   CommonModule,
   RouterModule,
-
-  // Angular Material Modules
   MatButtonModule,
   MatPaginatorModule,
   MatFormFieldModule,
@@ -47,12 +42,8 @@ export const SHARED_IMPORTS = [
   MatIconModule,
   MatListModule,
   MatCardModule,
-
-  // PrimeNG Modules
-  SidebarModule,
-  ToolbarModule,
-  ButtonModule,
-  MenubarModule,
-  ListboxModule,
-  CardModule,
+  FormsModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
 ];
+
