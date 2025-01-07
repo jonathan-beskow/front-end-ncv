@@ -2,9 +2,14 @@
   <!-- Card de Detalhes da Aplicação -->
   <mat-card appearance="outlined" class="aplicacao-card">
     <div class="card-header">
-      <button mat-icon-button color="primary" (click)="editar()" class="edit-button">
-        <mat-icon>edit</mat-icon>
-      </button>
+      <button
+      mat-icon-button
+      color="primary"
+      [routerLink]="['/atualizar', aplicacao.id]"
+    >
+      <mat-icon>edit</mat-icon>
+    </button>
+
     </div>
     <mat-card-title class="aplicacao-title">
       {{ aplicacao.nomeAplicacao || 'Nome da aplicação não disponível' }}

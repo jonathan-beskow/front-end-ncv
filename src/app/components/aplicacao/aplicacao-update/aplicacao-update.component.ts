@@ -52,6 +52,7 @@ export class AplicacaoUpdateComponent implements OnInit {
       this.aplicacaoService.findById(id).subscribe(
         (resposta) => {
           this.aplicacao = resposta;
+          this.router.navigate(['/aplicacoes']);
         },
         (error) => {
           console.error('Houve algum erro ao carregar a aplicação:', error);
@@ -62,8 +63,9 @@ export class AplicacaoUpdateComponent implements OnInit {
 
   update(): void {
     this.aplicacaoService.update(this.aplicacao).subscribe(
-      () => {
-        this.router.navigate(['aplicacoes']);
+      resposta => {
+        this.aplicacao = resposta;
+        console.log(resposta);
       },
       (ex) => {
         console.error('Erro ao atualizar aplicação:', ex);
