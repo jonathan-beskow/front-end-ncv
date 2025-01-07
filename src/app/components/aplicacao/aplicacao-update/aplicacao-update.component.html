@@ -51,6 +51,21 @@
     </select>
   </mat-form-field>
 
+  <!-- Campo: Status da Aplicação -->
+<!-- Campo: Status da Aplicação -->
+<mat-form-field class="full-width" appearance="outline">
+  <mat-label>Status da Aplicação</mat-label>
+  <mat-select
+    [(ngModel)]="aplicacao.statusAplicacaoCodigo"
+    name="statusAplicacaoCodigo"
+  >
+    <mat-option *ngFor="let status of statusOpcoes" [value]="status.value">
+      {{ status.label }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+
   <!-- Botão: Salvar Alterações -->
   <button
     type="button"

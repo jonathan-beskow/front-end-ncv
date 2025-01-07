@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
 import { Aplicacao } from '../../../models/aplicacao';
 import { AplicacaoService } from '../../../services/aplicacao.service';
 
@@ -17,6 +18,7 @@ import { AplicacaoService } from '../../../services/aplicacao.service';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatSelectModule,
   ],
   templateUrl: './aplicacao-update.component.html',
   styleUrls: ['./aplicacao-update.component.css'],
@@ -32,6 +34,16 @@ export class AplicacaoUpdateComponent implements OnInit {
     statusAplicacaoDescricao: '',
   };
 
+  statusOpcoes = [
+    { value: 0, label: 'Em Desenvolvimento' },
+    { value: 1, label: 'Disponibilizada para testes' },
+    { value: 2, label: 'Em Homologação' },
+    { value: 3, label: 'Em Implantação' },
+    { value: 4, label: 'Implantada' },
+    { value: 5, label: 'Impedimento' },
+  ];
+
+
   constructor(
     private route: ActivatedRoute,
     private aplicacaoService: AplicacaoService,
@@ -39,7 +51,6 @@ export class AplicacaoUpdateComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log("chegou no aplicacao update");
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.aplicacao.id = id;
@@ -53,6 +64,14 @@ export class AplicacaoUpdateComponent implements OnInit {
       this.aplicacaoService.findById(id).subscribe(
         (resposta) => {
           this.aplicacao = resposta;
+
+          // Define o status como numérico (caso venha como texto do backend)
+          const statusEncontrado = this.statusOpcoes.find(
+            (status) => status.label === resposta.statusAplicacaoDescricao
+          );
+          if (statusEncontrado) {
+            this.aplicacao.statusAplicacaoCodigo = statusEncontrado.value;
+          }
         },
         (error) => {
           console.error('Houve algum erro ao carregar a aplicação:', error);
@@ -61,11 +80,11 @@ export class AplicacaoUpdateComponent implements OnInit {
     }
   }
 
+
   update(): void {
     this.aplicacaoService.update(this.aplicacao).subscribe(
-      resposta => {
-        this.aplicacao = resposta;
-        console.log(resposta);
+      (resposta) => {
+        console.log('Aplicação atualizada com sucesso:', resposta);
         const id = this.route.snapshot.paramMap.get('id');
         this.router.navigate(['/aplicacoes/', id]);
       },
@@ -74,4 +93,5 @@ export class AplicacaoUpdateComponent implements OnInit {
       }
     );
   }
+
 }
