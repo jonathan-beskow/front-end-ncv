@@ -125,7 +125,7 @@ export class AplicacaoViewComponent implements OnInit {
         return 'status-em-homologacao';
       case 'em implantação':
         return 'status-em-implantacao';
-      case 'implantada':
+      case 'Implantada':
         return 'status-implantada';
       case 'impedimento':
         return 'status-impedimento';

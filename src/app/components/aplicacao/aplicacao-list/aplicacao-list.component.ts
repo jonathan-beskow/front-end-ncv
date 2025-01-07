@@ -51,9 +51,9 @@ export class AplicacaoListComponent {
         return 'status-em-homologacao';
       case 'Em Implantação':
         return 'status-em-implantacao';
-      case 'IMPLANTADA':
+      case 'Implantada':
         return 'status-implantada';
-      case 'IMPEDIMENTO':
+      case 'Impedimento':
         return 'status-impedimento';
       default:
         return '';

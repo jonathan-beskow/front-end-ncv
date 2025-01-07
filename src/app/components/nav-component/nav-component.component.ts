@@ -5,12 +5,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 import { SHARED_IMPORTS } from '../../shared-imports';
 import { MatIconModule } from '@angular/material/icon';
+import { InicioComponent } from '../inicio/inicio.component';
 
 @Component({
   selector: 'app-sidenav',
   standalone: true,
   imports: [MatSidenavModule, MatToolbarModule, MatListModule, RouterModule, SHARED_IMPORTS,
-    MatIconModule
+    MatIconModule, InicioComponent
   ],
 
   templateUrl: './nav-component.component.html',
