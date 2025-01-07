@@ -5,6 +5,7 @@ import { NavComponentComponent } from './components/nav-component/nav-component.
 import { AplicacaoListComponent } from './components/aplicacao/aplicacao-list/aplicacao-list.component';
 import { AplicacaoCreateComponent } from './components/aplicacao/aplicacao-create/aplicacao-create.component';
 import { AplicacaoUpdateComponent } from './components/aplicacao/aplicacao-update/aplicacao-update.component';
+import { RecursosComponent } from './components/recursos/recursos.component';
 
 export const routes: Routes = [
   {
@@ -16,6 +17,7 @@ export const routes: Routes = [
       { path: 'aplicacoes/:id', component: AplicacaoViewComponent }, // Detalhes da aplicação
       { path: 'criar', component: AplicacaoCreateComponent },
       { path: 'atualizar/:id', component: AplicacaoUpdateComponent },
+      { path: 'recursos', component: RecursosComponent },
     ],
   },
 ];

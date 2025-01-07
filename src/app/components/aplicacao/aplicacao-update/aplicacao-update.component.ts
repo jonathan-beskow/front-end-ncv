@@ -66,6 +66,8 @@ export class AplicacaoUpdateComponent implements OnInit {
       resposta => {
         this.aplicacao = resposta;
         console.log(resposta);
+        const id = this.route.snapshot.paramMap.get('id');
+        this.router.navigate(['/aplicacoes/', id]);
       },
       (ex) => {
         console.error('Erro ao atualizar aplicação:', ex);

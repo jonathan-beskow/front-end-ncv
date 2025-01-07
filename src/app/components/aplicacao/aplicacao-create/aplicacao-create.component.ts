@@ -37,6 +37,7 @@ export class AplicacaoCreateComponent {
   create(): void {
     this.aplicacaoService.create(this.aplicacao).subscribe(
       (resposta) => {
+        //this.aplicacao = resposta;
         console.log(this.aplicacao)
       },
       (ex) => {
