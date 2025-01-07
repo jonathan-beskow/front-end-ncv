@@ -4,8 +4,14 @@
 
 .sidenav {
   width: 250px;
-  background: linear-gradient(180deg, rgba(2, 0, 36, 1) 0%, rgba(37, 97, 207, 1) 0%, rgba(0, 212, 255, 1) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(37, 97, 207, 1) 0%,
+    rgba(0, 212, 255, 1) 100%
+  );
   color: white;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 .sidenav img {
@@ -42,11 +48,20 @@
 }
 
 a {
-
   align-items: center;
   justify-content: center;
+  transition: background-position 0.5s ease, color 0.5s ease;
+  background-size: 200% 100%;
+  background-position: right;
 }
 
-.mat-mdc-list-item-unscoped-content .mdc-list-item__primary-text {
-  color: white;
+a:hover {
+  background: linear-gradient(
+    to right,
+    rgba(255, 140, 0, 1) 50%,
+    rgba(2, 0, 36, 0.3) 50%
+  );
+  background-size: 200% 100%;
+  background-position: left;
+  border-radius: 0px !important;
 }
