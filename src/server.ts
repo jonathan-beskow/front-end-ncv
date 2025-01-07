@@ -15,18 +15,6 @@ const app = express();
 const angularApp = new AngularNodeAppEngine();
 
 /**
- * Example Express Rest API endpoints can be defined here.
- * Uncomment and define endpoints as necessary.
- *
- * Example:
- * ```ts
- * app.get('/api/**', (req, res) => {
- *   // Handle API request
- * });
- * ```
- */
-
-/**
  * Serve static files from /browser
  */
 app.use(
@@ -38,7 +26,30 @@ app.use(
 );
 
 /**
- * Handle all other requests by rendering the Angular application.
+ * Handle dynamic routes: /aplicacoes/:id and /atualizar/:id
+ */
+app.get('/aplicacoes/:id', (req, res, next) => {
+  const params = { id: req.params.id };
+  angularApp
+    .handle(req, { params })
+    .then((response) =>
+      response ? writeResponseToNodeResponse(response, res) : next(),
+    )
+    .catch(next);
+});
+
+app.get('/atualizar/:id', (req, res, next) => {
+  const params = { id: req.params.id };
+  angularApp
+    .handle(req, { params })
+    .then((response) =>
+      response ? writeResponseToNodeResponse(response, res) : next(),
+    )
+    .catch(next);
+});
+
+/**
+ * Fallback handler for all other routes
  */
 app.use('/**', (req, res, next) => {
   angularApp
