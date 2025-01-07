@@ -8,7 +8,6 @@ import { API_CONFIG } from '../config/api.config';
   providedIn: 'root',
 })
 export class AplicacaoService {
-  private apiUrl = 'http://localhost:8080';
 
   constructor(private http: HttpClient) {}
 
@@ -29,5 +28,18 @@ export class AplicacaoService {
   update(chamado: Aplicacao): Observable<Aplicacao> {
     return this.http.put<Aplicacao>(`${API_CONFIG.baseUrl}/${chamado.id}`, chamado);
   }
+
+  horasDetalhadasPorDesenvolvedor(id: any): Observable<any> {
+    return this.http.get<any>(`${API_CONFIG.baseUrl}/${id}/horas/detalhadas`);
+  }
+
+  horasTotaisDaAplicacao(id: any): Observable<any> {
+    return this.http.get<any>(`${API_CONFIG.baseUrl}/${id}/horas/totais`);
+  }
+
+  addHorasAplicacao(id: number, horas: number): Observable<any> {
+    return this.http.post<any>(`${API_CONFIG.baseUrl}/${id}/horas`, { horas });
+  }
+
 
 }

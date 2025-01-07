@@ -2,14 +2,9 @@
   <!-- Card de Detalhes da Aplicação -->
   <mat-card appearance="outlined" class="aplicacao-card">
     <div class="card-header">
-      <button
-      mat-icon-button
-      color="primary"
-      [routerLink]="['/atualizar', aplicacao.id]"
-    >
-      <mat-icon>edit</mat-icon>
-    </button>
-
+      <button mat-icon-button color="primary" [routerLink]="['/atualizar', aplicacao.id]">
+        <mat-icon>edit</mat-icon>
+      </button>
     </div>
     <mat-card-title class="aplicacao-title">
       {{ aplicacao.nomeAplicacao || 'Nome da aplicação não disponível' }}
@@ -69,5 +64,36 @@
         <p>Nenhum histórico disponível.</p>
       </mat-card-content>
     </ng-template>
+  </mat-card>
+
+  <!-- Novo Card: Horas na Aplicação -->
+  <mat-card appearance="outlined" class="horas-card">
+    <mat-card-title class="horas-title">Horas na Aplicação</mat-card-title>
+    <mat-card-content>
+      <!-- Total de Horas -->
+      <p>
+        <strong>Total de Horas:</strong>
+        {{ totalHoras || 'Carregando...' }}
+      </p>
+
+      <!-- Detalhes por Desenvolvedor -->
+      <div *ngIf="horasDetalhadas?.length; else noHoras">
+        <div *ngFor="let desenvolvedor of horasDetalhadas">
+          <h4>
+            {{ desenvolvedor.desenvolvedor }}
+            <span class="horas-total">({{ getTotalHoras(desenvolvedor.horas) }} horas)</span>
+          </h4>
+          <ul>
+            <li *ngFor="let detalhe of desenvolvedor.horas">
+              <strong>Horas:</strong> {{ detalhe.quantidade }}, <strong>Data(s):</strong>
+              <span *ngFor="let data of detalhe.dias">{{ data }} </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <ng-template #noHoras>
+        <p>Nenhuma hora lançada nesta aplicação.</p>
+      </ng-template>
+    </mat-card-content>
   </mat-card>
 </div>

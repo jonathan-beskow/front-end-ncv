@@ -18,9 +18,12 @@ export class AplicacaoViewComponent implements OnInit {
     dataChegada: "",
     repositorio: "",
     ic: "",
-    historicoDeMudanca: [], // Atualize para refletir corretamente os objetos recebidos
+    historicoDeMudanca: [],
     statusAplicacaoDescricao: "",
   };
+
+  totalHoras: number | null = null;
+  horasDetalhadas: any = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -33,16 +36,13 @@ export class AplicacaoViewComponent implements OnInit {
     if (id) {
       this.aplicacao.id = id;
       this.findById();
+      this.loadHoras(id);
     }
-  }
-
-  editar(): void {
-    this.router.navigate(['atualizar/:id']); // Caminho configurado nas rotas
   }
 
   // Método para buscar a aplicação pelo ID
   findById(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id')); // Converta para número
+    const id = Number(this.route.snapshot.paramMap.get('id'));
     if (!isNaN(id)) {
       this.aplicacaoService.findById(id).subscribe(
         (resposta) => {
@@ -53,6 +53,39 @@ export class AplicacaoViewComponent implements OnInit {
         }
       );
     }
+  }
+
+  // Método para carregar horas totais e detalhadas
+  loadHoras(id: any): void {
+    this.aplicacaoService.horasTotaisDaAplicacao(id).subscribe(
+      (resposta) => {
+        this.totalHoras = resposta;
+      },
+      (error) => {
+        console.error("Erro ao carregar total de horas:", error);
+      }
+    );
+
+    this.aplicacaoService.horasDetalhadasPorDesenvolvedor(id).subscribe(
+      (resposta) => {
+        // Transformar o JSON para um formato iterável
+        this.horasDetalhadas = Object.keys(resposta).map((desenvolvedor) => ({
+          desenvolvedor,
+          horas: Object.keys(resposta[desenvolvedor]).map((quantidade) => ({
+            quantidade: +quantidade,
+            dias: resposta[desenvolvedor][quantidade],
+          })),
+        }));
+      },
+      (error) => {
+        console.error("Erro ao carregar horas detalhadas:", error);
+      }
+    );
+  }
+
+  // Método para calcular o total de horas
+  getTotalHoras(horas: any[]): number {
+    return horas.reduce((total, detalhe) => total + detalhe.quantidade, 0);
   }
 
   getStatusClass(status: string): string {
@@ -73,5 +106,4 @@ export class AplicacaoViewComponent implements OnInit {
         return '';
     }
   }
-
 }

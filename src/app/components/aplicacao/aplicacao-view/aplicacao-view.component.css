@@ -1,6 +1,6 @@
 .aplicacao-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column; /* Organiza os cards verticalmente */
   gap: 16px;
   margin: 16px;
 }
@@ -73,4 +73,31 @@
 .links-section a {
   display: block; /* Cada link em uma nova linha */
   margin-left: 8px; /* Identação para alinhamento */
+}
+
+/* Card de horas na aplicação */
+.horas-card {
+  flex: 1;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid #e0e0e0;
+  margin-top: 16px; /* Espaçamento extra para separar visualmente dos outros cards */
+}
+
+.horas-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.horas-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.25rem;
+  color: #3f51b5;
+  margin-bottom: 16px;
+}
+
+.horas-total {
+  font-weight: normal;
+  font-size: 1rem;
+  color: gray;
 }

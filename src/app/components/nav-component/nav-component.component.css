@@ -40,3 +40,13 @@
 .mat-toolbar {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
+
+a {
+
+  align-items: center;
+  justify-content: center;
+}
+
+.mat-mdc-list-item-unscoped-content .mdc-list-item__primary-text {
+  color: white;
+}
