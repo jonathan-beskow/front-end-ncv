@@ -43,6 +43,13 @@ export class AplicacaoUpdateComponent implements OnInit {
     { value: 5, label: 'Impedimento' },
   ];
 
+  responsavelOpcoes = [
+    { value: 0, label: 'Alex' },
+    { value: 1, label: 'Camila' },
+    { value: 2, label: 'Leila' },
+    { value: 3, label: 'Ricardo' },
+  ];
+
 
   constructor(
     private route: ActivatedRoute,
@@ -65,12 +72,20 @@ export class AplicacaoUpdateComponent implements OnInit {
         (resposta) => {
           this.aplicacao = resposta;
 
-          // Define o status como numérico (caso venha como texto do backend)
+          // Mapear status (já existente)
           const statusEncontrado = this.statusOpcoes.find(
             (status) => status.label === resposta.statusAplicacaoDescricao
           );
           if (statusEncontrado) {
             this.aplicacao.statusAplicacaoCodigo = statusEncontrado.value;
+          }
+
+          // Mapear responsável (caso venha diferente do esperado)
+          const responsavelEncontrado = this.responsavelOpcoes.find(
+            (responsavel) => responsavel.value === resposta.bsResponsavelCodigo
+          );
+          if (responsavelEncontrado) {
+            this.aplicacao.bsResponsavelCodigo = responsavelEncontrado.value;
           }
         },
         (error) => {
@@ -79,6 +94,7 @@ export class AplicacaoUpdateComponent implements OnInit {
       );
     }
   }
+
 
 
   update(): void {
@@ -93,5 +109,6 @@ export class AplicacaoUpdateComponent implements OnInit {
       }
     );
   }
+
 
 }

@@ -4,87 +4,51 @@
   <!-- Campo: Nome da Aplicação -->
   <mat-form-field class="full-width" appearance="outline">
     <mat-label>Nome da Aplicação</mat-label>
-    <input
-      matInput
-      [(ngModel)]="aplicacao.nomeAplicacao"
-      name="nomeAplicacao"
-      placeholder="Digite o nome da aplicação"
-      required
-    />
+    <input matInput [(ngModel)]="aplicacao.nomeAplicacao" name="nomeAplicacao" placeholder="Digite o nome da aplicação"
+      required />
   </mat-form-field>
 
   <!-- Campo: Repositório SVN -->
   <mat-form-field class="full-width" appearance="outline">
     <mat-label>Repositório SVN</mat-label>
-    <input
-      matInput
-      [(ngModel)]="aplicacao.repositorio"
-      name="repositorio"
-      placeholder="Digite o repositório SVN"
-    />
+    <input matInput [(ngModel)]="aplicacao.repositorio" name="repositorio" placeholder="Digite o repositório SVN" />
   </mat-form-field>
 
   <!-- Campo: Página do IC -->
   <mat-form-field class="full-width" appearance="outline">
     <mat-label>Página do IC</mat-label>
-    <input
-      matInput
-      [(ngModel)]="aplicacao.ic"
-      name="ic"
-      placeholder="Digite a página do IC"
-    />
+    <input matInput [(ngModel)]="aplicacao.ic" name="ic" placeholder="Digite a página do IC" />
   </mat-form-field>
 
   <!-- Campo: Responsável -->
-  <mat-form-field class="selectbs" appearance="outline">
-    <mat-label>Selecione o Responsável da BS:</mat-label>
-    <select
-      matNativeControl
-      required
-      [(ngModel)]="aplicacao.bsResponsavelCodigo"
-      name="bsResponsavelCodigo"
-    >
-      <option value="0">Alex</option>
-      <option value="1">Camila</option>
-      <option value="2">Leila</option>
-      <option value="3">Ricardo</option>
-    </select>
-  </mat-form-field>
-
-  <!-- Campo: Status da Aplicação -->
-<!-- Campo: Status da Aplicação -->
+<!-- Campo: Responsável -->
 <mat-form-field class="full-width" appearance="outline">
-  <mat-label>Status da Aplicação</mat-label>
-  <mat-select
-    [(ngModel)]="aplicacao.statusAplicacaoCodigo"
-    name="statusAplicacaoCodigo"
-  >
-    <mat-option *ngFor="let status of statusOpcoes" [value]="status.value">
-      {{ status.label }}
+  <mat-label>Selecione o Responsável da BS:</mat-label>
+  <mat-select [(ngModel)]="aplicacao.bsResponsavelCodigo" name="bsResponsavelCodigo">
+    <mat-option *ngFor="let responsavel of responsavelOpcoes" [value]="responsavel.value">
+      {{ responsavel.label }}
     </mat-option>
   </mat-select>
 </mat-form-field>
 
+  <!-- Campo: Status da Aplicação -->
+  <mat-form-field class="full-width" appearance="outline">
+    <mat-label>Status da Aplicação</mat-label>
+    <mat-select [(ngModel)]="aplicacao.statusAplicacaoCodigo" name="statusAplicacaoCodigo">
+      <mat-option *ngFor="let status of statusOpcoes" [value]="status.value">
+        {{ status.label }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
 
   <!-- Botão: Salvar Alterações -->
-  <button
-    type="button"
-    (click)="update()"
-    class="botoes mat-elevation-z4"
-    mat-raised-button
-    color="primary"
-  >
+  <button type="button" (click)="update()" class="botoes mat-elevation-z4" mat-raised-button color="primary">
     Salvar Alterações
   </button>
 
   <!-- Botão: Cancelar -->
-  <button
-    routerLink="../"
-    class="botoes mat-elevation-z4"
-    mat-stroked-button
-    color="warn"
-    type="button"
-  >
+  <button routerLink="../" class="botoes mat-elevation-z4" mat-stroked-button color="warn" type="button">
     Cancelar
   </button>
 </form>

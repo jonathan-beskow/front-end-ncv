@@ -9,17 +9,17 @@ import { Aplicacao } from './../../../models/aplicacao';
   templateUrl: './aplicacao-view.component.html',
   styleUrls: ['./aplicacao-view.component.css'],
   standalone: true,
-  imports: [SHARED_IMPORTS], // Adiciona o CommonModule aqui
+  imports: [SHARED_IMPORTS],
 })
 export class AplicacaoViewComponent implements OnInit {
   aplicacao: Aplicacao = {
-    id: "",
-    nomeAplicacao: "",
-    dataChegada: "",
-    repositorio: "",
-    ic: "",
+    id: '',
+    nomeAplicacao: '',
+    dataChegada: '',
+    repositorio: '',
+    ic: '',
     historicoDeMudanca: [],
-    statusAplicacaoDescricao: "",
+    statusAplicacaoDescricao: '',
   };
 
   totalHoras: number | null = null;
@@ -31,6 +31,22 @@ export class AplicacaoViewComponent implements OnInit {
     horas: 0,
     dataLancamento: '',
   };
+
+  statusOpcoes = [
+    { value: 0, label: 'Em Desenvolvimento' },
+    { value: 1, label: 'Disponibilizada para Testes' },
+    { value: 2, label: 'Em Homologação' },
+    { value: 3, label: 'Em Implantação' },
+    { value: 4, label: 'Implantada' },
+    { value: 5, label: 'Impedimento' },
+  ];
+
+  responsavelOpcoes = [
+    { value: 0, label: 'Alex' },
+    { value: 1, label: 'Camila' },
+    { value: 2, label: 'Leila' },
+    { value: 3, label: 'Ricardo' },
+  ];
 
   constructor(
     private route: ActivatedRoute,
@@ -54,9 +70,25 @@ export class AplicacaoViewComponent implements OnInit {
       this.aplicacaoService.findById(id).subscribe(
         (resposta) => {
           this.aplicacao = resposta;
+
+          // Mapear status
+          const statusEncontrado = this.statusOpcoes.find(
+            (status) => status.label === resposta.statusAplicacaoDescricao
+          );
+          if (statusEncontrado) {
+            this.aplicacao.statusAplicacaoDescricao = statusEncontrado.label;
+          }
+
+          // Mapear responsável
+          const responsavelEncontrado = this.responsavelOpcoes.find(
+            (responsavel) => responsavel.value === resposta.bsResponsavelCodigo
+          );
+          if (responsavelEncontrado) {
+            this.aplicacao.bsResponsavelNome = responsavelEncontrado.label;
+          }
         },
         (error) => {
-          console.error("Houve algum erro ao carregar a aplicação:", error);
+          console.error('Houve algum erro ao carregar a aplicação:', error);
         }
       );
     }
@@ -69,7 +101,7 @@ export class AplicacaoViewComponent implements OnInit {
         this.totalHoras = resposta;
       },
       (error) => {
-        console.error("Erro ao carregar total de horas:", error);
+        console.error('Erro ao carregar total de horas:', error);
       }
     );
 
@@ -85,7 +117,7 @@ export class AplicacaoViewComponent implements OnInit {
         }));
       },
       (error) => {
-        console.error("Erro ao carregar horas detalhadas:", error);
+        console.error('Erro ao carregar horas detalhadas:', error);
       }
     );
   }
@@ -109,7 +141,7 @@ export class AplicacaoViewComponent implements OnInit {
         this.loadHoras(id); // Atualiza a lista de horas após o cadastro
       },
       (error) => {
-        console.error("Erro ao cadastrar horas:", error);
+        console.error('Erro ao cadastrar horas:', error);
         alert('Erro ao cadastrar horas. Tente novamente.');
       }
     );
@@ -125,7 +157,7 @@ export class AplicacaoViewComponent implements OnInit {
         return 'status-em-homologacao';
       case 'em implantação':
         return 'status-em-implantacao';
-      case 'Implantada':
+      case 'implantada':
         return 'status-implantada';
       case 'impedimento':
         return 'status-impedimento';
