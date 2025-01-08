@@ -23,22 +23,20 @@
         <p>
           <strong>Responsável:</strong> {{ aplicacao.bsResponsavelNome || 'Não informado' }}
         </p>
+        <p>
+          <strong>Repositório:</strong>
+          <a mat-button color="primary" [href]="aplicacao.repositorio || '#'" target="_blank">
+            {{ aplicacao.repositorio ? 'Clique aqui' : 'Não disponível' }}
+          </a>
+        </p>
+        <p>
+          <strong>IC:</strong>
+          <a mat-button color="primary" [href]="aplicacao.ic || '#'" target="_blank">
+            {{ aplicacao.ic ? 'Clique aqui' : 'Não disponível' }}
+          </a>
+        </p>
       </div>
     </mat-card-content>
-    <mat-card-actions class="links-section">
-      <p>
-        <strong>Repositório:</strong>
-        <a mat-button color="primary" [href]="aplicacao.repositorio || '#'" target="_blank">
-          {{ aplicacao.repositorio ? 'Clique aqui' : 'Não disponível' }}
-        </a>
-      </p>
-      <p>
-        <strong>IC:</strong>
-        <a mat-button color="primary" [href]="aplicacao.ic || '#'" target="_blank">
-          {{ aplicacao.ic ? 'Clique aqui' : 'Não disponível' }}
-        </a>
-      </p>
-    </mat-card-actions>
   </mat-card>
 
   <!-- Card de Histórico de Mudança -->
@@ -48,13 +46,13 @@
       <mat-card-content>
         <div *ngFor="let historico of aplicacao.historicoDeMudanca" class="history-item">
           <p>
-            <strong>Data:</strong> {{ historico.data || 'Data não informada' }}
-          </p>
-          <p>
             <strong>Status:</strong>
             <span [class]="getStatusClass(historico.statusDescricao || '')">
               {{ historico.statusDescricao || 'Status não informado' }}
             </span>
+          </p>
+          <p>
+            <strong>Data:</strong> {{ historico.data || 'Data não informada' }}
           </p>
         </div>
       </mat-card-content>
