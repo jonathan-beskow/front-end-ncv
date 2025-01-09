@@ -1,0 +1,105 @@
+.aplicacao-container {
+  display: flex;
+  justify-content: center;
+  margin: 16px;
+}
+
+.horas-card {
+  width: 100%;
+  max-width: 1200px; /* Limita a largura máxima do card */
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+}
+
+.horas-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #3f51b5;
+  margin-bottom: 16px;
+}
+
+.horas-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.horas-detalhes, .horas-form {
+  flex: 1;
+  text-align: center; /* Centraliza o conteúdo */
+}
+
+.horas-detalhes {
+  padding-right: 20px;
+  border-right: 1px solid #ddd; /* Linha separadora */
+}
+
+.horas-form {
+  padding-left: 20px;
+}
+
+.apontamentos-list {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column; /* Coloca os apontamentos em colunas */
+  align-items: center; /* Centraliza os apontamentos horizontalmente */
+  gap: 8px; /* Espaço entre os itens */
+}
+
+.apontamento-item {
+  display: flex;
+  justify-content: space-between;
+  width: 50%; /* Define a largura dos apontamentos */
+  font-size: 1rem;
+  padding: 4px 8px;
+  background: #f5f5f5;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.apontamento-tipo {
+  font-weight: bold;
+  color: #3f51b5;
+}
+
+.apontamento-valor {
+  color: #333;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.horas-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* Espaçamento entre os elementos do formulário */
+}
+
+.input-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 16px; /* Espaçamento entre os inputs pequenos */
+}
+
+.small-input {
+  flex: 1; /* Garante que os inputs pequenos compartilhem o espaço igualmente */
+  min-width: 100px; /* Define um tamanho mínimo para os inputs */
+}
+
+mat-form-field {
+  width: 100%; /* Garante que os inputs normais ocupem toda a largura */
+}
+
+button {
+  margin-top: 16px;
+  align-self: flex-start; /* Mantém o botão alinhado à esquerda */
+  width: 100%;
+}
+

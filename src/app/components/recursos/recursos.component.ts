@@ -17,4 +17,8 @@ export class RecursosComponent {
   downloadExcel(): void {
     this.resource.downloadEstadoAtual();
   }
+
+  downloadMetrics(): void {
+    this.resource.downloadMetricasAplicações();
+  }
 }

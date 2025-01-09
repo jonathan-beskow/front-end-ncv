@@ -1,19 +1,47 @@
+/* Layout dos cartões */
+.cards-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  gap: 0px; /* Espaçamento reduzido entre os cartões */
+  margin: 20px;
+}
+
 .download-card {
+  flex: 1;
   max-width: 400px;
-  margin: 20px auto;
   padding: 16px;
   border: 1px solid #e0e0e0;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+.status-card {
+  border-left: 5px solid #3f51b5;
+  background: #f4f8ff;
+}
+
+.metrics-card {
+  border-left: 5px solid #ff9800;
+  background: #fff9f2;
 }
 
 .card-title {
   text-align: center;
   font-size: 1.5rem;
   font-weight: bold;
-  color: #3f51b5;
   margin-bottom: 16px;
 }
 
+.status-card .card-title {
+  color: #3f51b5;
+}
+
+.metrics-card .card-title {
+  color: #ff9800;
+}
+
+/* Estilo dos botões */
 mat-card-actions {
   display: flex;
   justify-content: center;
@@ -23,5 +51,28 @@ mat-card-actions {
 button {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
+  width: 100%; /* Botão ocupa toda a largura do cartão */
+  padding: 16px; /* Botão maior */
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.status-card button {
+  background-color: #3f51b5;
+  color: #fff;
+}
+
+.metrics-card button {
+  background-color: #ff9800;
+  color: #fff;
+}
+
+.status-card button:hover {
+  background-color: #303f9f;
+}
+
+.metrics-card button:hover {
+  background-color: #e68a00;
 }

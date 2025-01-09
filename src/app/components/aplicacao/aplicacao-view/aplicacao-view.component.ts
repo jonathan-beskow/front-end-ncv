@@ -63,6 +63,11 @@ export class AplicacaoViewComponent implements OnInit {
     }
   }
 
+  horasDetalhadasNavegar(): void {
+    console.log('Navegar para horas detalhadas');
+    this.router.navigate(['/horas-detalhadas', this.aplicacao.id]);
+  }
+
   // Método para buscar a aplicação pelo ID
   findById(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));

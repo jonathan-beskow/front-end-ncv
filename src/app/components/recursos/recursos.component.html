@@ -1,12 +1,27 @@
-<mat-card class="download-card">
-  <mat-card-title>Exportar Status Atual Das Aplicações</mat-card-title>
-  <mat-card-content>
-    <p>Clique no botão abaixo para baixar o relatório do estado atual das aplicações.</p>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button color="primary" (click)="downloadExcel()">
-      <mat-icon>download</mat-icon>
-      Download
-    </button>
-  </mat-card-actions>
-</mat-card>
+<div class="cards-container">
+  <mat-card class="download-card status-card">
+    <mat-card-title>Exportar Status Atual Das Aplicações</mat-card-title>
+    <mat-card-content>
+      <p>Clique no botão abaixo para baixar o relatório do estado atual das aplicações.</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="downloadExcel()">
+        <mat-icon>download</mat-icon>
+        Download
+      </button>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-card class="download-card metrics-card">
+    <mat-card-title>Exportar Métricas atuais das aplicações</mat-card-title>
+    <mat-card-content>
+      <p>Clique no botão abaixo para baixar o relatório de métricas das aplicações.</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="accent" (click)="downloadMetrics()">
+        <mat-icon>download</mat-icon>
+        Download
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

@@ -1,0 +1,95 @@
+<div *ngIf="aplicacao && aplicacao.id" class="aplicacao-container">
+  <!-- Card de Horas da Aplicação e Lançamento de Horas -->
+  <mat-card appearance="outlined" class="horas-card">
+    <mat-card-title class="horas-title">Horas da Aplicação</mat-card-title>
+    <mat-card-content class="horas-content">
+      <!-- Lado esquerdo: Total de Horas e Apontamentos -->
+      <div class="horas-detalhes">
+        <h3>Detalhes de Horas</h3>
+        <p><strong>Total de Horas:</strong> {{ totalHoras || 'Carregando...' }}</p>
+
+        <h3>Apontamentos resolvidos:</h3>
+        <div class="apontamentos-list">
+          <div *ngFor="let tipo of getApontamentosKeys()" class="apontamento-item">
+            <span class="apontamento-tipo">{{ tipo }}:</span>
+            <span class="apontamento-valor">{{ apontamentos[tipo] }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lado direito: Formulário de Lançamento de Horas -->
+      <!-- Lado direito: Formulário de Lançamento de Horas -->
+      <div class="horas-form">
+        <h3>Lançamento de Horas</h3>
+
+        <!-- Inputs existentes -->
+
+        <div class="input-row">
+          <div class="input-row">
+            <mat-form-field appearance="outline" class="small-input">
+              <mat-label>Crítico</mat-label>
+              <input
+                matInput
+                type="number"
+                [(ngModel)]="apontamentosForm.critico"
+                name="critico"
+              />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="small-input">
+              <mat-label>Alto</mat-label>
+              <input
+                matInput
+                type="number"
+                [(ngModel)]="apontamentosForm.alto"
+                name="alto"
+              />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="small-input">
+              <mat-label>Médio</mat-label>
+              <input
+                matInput
+                type="number"
+                [(ngModel)]="apontamentosForm.medio"
+                name="medio"
+              />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="small-input">
+              <mat-label>Baixo</mat-label>
+              <input
+                matInput
+                type="number"
+                [(ngModel)]="apontamentosForm.baixo"
+                name="baixo"
+              />
+            </mat-form-field>
+          </div>
+
+        </div>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Desenvolvedor</mat-label>
+          <mat-select [(ngModel)]="novoLancamento.desenvolvedor" name="desenvolvedor">
+            <mat-option *ngFor="let dev of desenvolvedores" [value]="dev">{{ dev }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Data</mat-label>
+          <input matInput [matDatepicker]="picker" [(ngModel)]="novoLancamento.dataLancamento" name="dataLancamento">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Horas</mat-label>
+          <input matInput type="number" [(ngModel)]="novoLancamento.horas" name="horas">
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="cadastrar()">Cadastrar</button>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+</div>
