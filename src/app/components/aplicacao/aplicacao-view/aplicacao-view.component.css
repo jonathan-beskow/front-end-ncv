@@ -19,9 +19,10 @@
 }
 
 .card-header {
-  position: absolute;
+  margin-left: auto;
   top: 8px;
   right: 8px; /* Move o ícone para o lado direito */
+  display: flex;
 }
 
 .edit-button {
@@ -54,17 +55,27 @@
 
 /* Título da aplicação */
 .aplicacao-title {
+  justify-content: center;
+  display: flex;
   text-align: center;
   font-size: 1.5rem;
   font-weight: bold;
   color: #3f51b5;
-  margin-bottom: 16px;
+  margin: 10px 20px 10px 20px;
+  align-items: center;
+   span {
+    margin-left: auto; 
+   }
+  border-bottom: 2px solid;
+  border-color: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(37, 97, 207, 1) 50%,
+    rgba(0, 212, 255, 1) 100%
+  );;
 }
 
 /* Links e informações principais */
-.info-section p {
-  margin: 8px 0;
-}
 
 .links-section p {
   margin: 4px 0; /* Ajusta o espaçamento entre os links */
@@ -125,7 +136,7 @@
   color: gray;
 }
 
-mat-form-field {
+.mat-form-field {
   width: 100%;
 }
 .status-em-desenvolvimento {
@@ -135,6 +146,7 @@ mat-form-field {
 
 .status-disponibilizada-para-testes {
   color: blue;
+  
 }
 
 .status-em-homologacao {
@@ -159,3 +171,36 @@ mat-form-field {
   color: gray;
 }
 
+select[mat-card-content] {
+  padding-left: 10px !important;
+}
+
+.statusBar {
+  justify-content: center;
+  display: flex;
+  margin: 10px 0px 10px 0px;
+  background-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 3px;
+}
+
+.conteudo-section {
+  display: flex;
+}
+
+.info {
+  width: 100%;
+  display: grid;
+  align-items: center;
+}
+
+.info2 {
+  width: 100%;
+  div {
+    align-items: center;
+  }
+}
+
+.info-section {
+  padding: 0px 10px;
+}

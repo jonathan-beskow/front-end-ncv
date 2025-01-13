@@ -1,42 +1,48 @@
 <div *ngIf="aplicacao && aplicacao.id" class="aplicacao-container">
   <!-- Card de Detalhes da Aplicação -->
   <mat-card appearance="outlined" class="aplicacao-card">
-    <div class="card-header">
-      <button mat-icon-button color="primary" [routerLink]="['/atualizar', aplicacao.id]">
-        <mat-icon>edit</mat-icon>
-      </button>
-    </div>
     <mat-card-title class="aplicacao-title">
-      {{ aplicacao.nomeAplicacao || 'Nome da aplicação não disponível' }}
+      <span>{{ aplicacao.nomeAplicacao || 'Nome da aplicação não disponível' }}</span>
+      <div class="card-header">
+        <button mat-icon-button color="primary" [routerLink]="['/atualizar', aplicacao.id]">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
     </mat-card-title>
     <mat-card-content>
       <div class="info-section">
-        <p>
-          <strong>Status:</strong>
-          <span [class]="getStatusClass(aplicacao.statusAplicacaoDescricao || '')">
-            {{ aplicacao.statusAplicacaoDescricao || 'Status não disponível' }}
-          </span>
-        </p>
-        <p>
-          <strong>Data de Chegada:</strong> {{ aplicacao.dataChegada || 'Não informada' }}
-        </p>
-        <p>
-          <strong>Responsável:</strong> {{ aplicacao.bsResponsavelNome || 'Não informado' }}
-        </p>
-        <p>
-          <strong>Repositório:</strong>
-          <a mat-button color="primary" [href]="aplicacao.repositorio || '#'" target="_blank">
-            {{ aplicacao.repositorio ? 'Clique aqui' : 'Não disponível' }}
-          </a>
-        </p>
-        <p>
-          <strong>IC:</strong>
-          <a mat-button color="primary" [href]="aplicacao.ic || '#'" target="_blank">
-            {{ aplicacao.ic ? 'Clique aqui' : 'Não disponível' }}
-          </a>
-        </p>
+        <div class="conteudo-section">
+          <div class="info">
+            <div>
+              <strong>Data de Chegada:</strong> {{ aplicacao.dataChegada || 'Não informada' }}
+            </div>
+            <div>
+              <strong>Responsável:</strong> {{ aplicacao.bsResponsavelNome || 'Não informado' }}
+            </div>
+          </div>
+          <div class="info2">
+            <div>
+              <strong>Repositório:</strong>
+              <a mat-button color="primary" [href]="aplicacao.repositorio || '#'" target="_blank">
+                {{ aplicacao.repositorio || 'Não disponível' }}
+              </a>
+            </div>
+            <div>
+              <strong>IC:</strong>
+              <a mat-button color="primary" [href]="aplicacao.ic || '#'" target="_blank">
+                {{ aplicacao.ic || 'Não disponível' }}
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </mat-card-content>
+    <div class="statusBar">
+      <strong>Status:</strong>
+      <span [class]="getStatusClass(aplicacao.statusAplicacaoDescricao || '')">
+        {{ aplicacao.statusAplicacaoDescricao || 'Status não disponível' }}
+      </span>
+    </div>
   </mat-card>
 
   <!-- Card de Histórico de Mudança -->
