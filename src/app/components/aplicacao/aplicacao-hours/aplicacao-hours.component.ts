@@ -1,8 +1,8 @@
 
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { SHARED_IMPORTS } from '../../../shared-imports';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AplicacaoService } from '../../../services/aplicacao.service';
+import { SHARED_IMPORTS } from '../../../shared-imports';
 
 
 @Component({
@@ -34,7 +34,8 @@ export class AplicacaoHoursComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private aplicacaoService: AplicacaoService
+    private aplicacaoService: AplicacaoService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -88,57 +89,6 @@ export class AplicacaoHoursComponent implements OnInit {
     return this.apontamentos ? Object.keys(this.apontamentos) : [];
   }
 
-  // cadastrar(): void {
-  //   if (
-  //     !this.novoLancamento.desenvolvedor ||
-  //     this.novoLancamento.horas <= 0 ||
-  //     !this.novoLancamento.dataLancamento
-  //   ) {
-  //     alert('Preencha todos os campos corretamente!');
-  //     return;
-  //   }
-
-  //   if (!this.aplicacaoId) {
-  //     alert('ID da aplicação não encontrado!');
-  //     return;
-  //   }
-
-  //   // Objeto dos apontamentos com id e quantidade
-  //   const apontamentosRequests = [
-  //     { id: 1, quantidade: this.apontamentosForm.critico },
-  //     { id: 2, quantidade: this.apontamentosForm.alto },
-  //     { id: 3, quantidade: this.apontamentosForm.medio },
-  //     { id: 4, quantidade: this.apontamentosForm.baixo },
-  //   ];
-
-  //   // Requisição para adicionar apontamentos
-  //   apontamentosRequests.forEach((apontamento) => {
-  //     if (apontamento.quantidade > 0) {
-  //       this.aplicacaoService.addApontamento(this.aplicacaoId!, apontamento).subscribe(
-  //         () => {
-  //           console.log(`Apontamento com ID ${apontamento.id} cadastrado com sucesso!`);
-  //         },
-  //         (error: any) => {
-  //           console.error(`Erro ao cadastrar apontamento com ID ${apontamento.id}:`, error);
-  //         }
-  //       );
-  //     }
-  //   });
-
-  //   // Requisição para adicionar horas
-  //   this.aplicacaoService.addHorasAplicacao(this.aplicacaoId, this.novoLancamento).subscribe(
-  //     () => {
-  //       alert('Horas cadastradas com sucesso!');
-  //       this.loadHoras(this.aplicacaoId!);
-  //       this.loadApontamentos(this.aplicacaoId!);
-  //     },
-  //     (error: any) => {
-  //       console.error('Erro ao cadastrar horas:', error);
-  //       alert('Erro ao cadastrar horas. Tente novamente.');
-  //     }
-  //   );
-  // }
-
   cadastrar(): void {
     if (!this.aplicacaoId) {
       alert('ID da aplicação não encontrado!');
@@ -152,28 +102,67 @@ export class AplicacaoHoursComponent implements OnInit {
       { id: 4, quantidade: this.apontamentosForm.baixo },
     ];
 
-    console.log('Apontamentos a serem enviados:', apontamentosRequests);
+    let pendingRequests = 0;
 
+    // Enviar apontamentos
     apontamentosRequests.forEach((apontamento) => {
       if (apontamento.quantidade > 0) {
-        console.log('Enviando apontamento:', apontamento);
-        this.aplicacaoService
-          .addApontamento(this.aplicacaoId!, apontamento)
-          .subscribe(
-            () => {
-              console.log(
-                `Apontamento com ID ${apontamento.id} cadastrado com sucesso!`
-              );
-            },
-            (error: any) => {
-              console.error(
-                `Erro ao cadastrar apontamento com ID ${apontamento.id}:`,
-                error
-              );
-            }
-          );
+        pendingRequests++;
+        this.aplicacaoService.addApontamento(this.aplicacaoId!, apontamento).subscribe(
+          () => {
+            pendingRequests--;
+            this.checkAndReload(pendingRequests);
+          },
+          (error: any) => {
+            console.error(`Erro ao cadastrar apontamento com ID ${apontamento.id}:`, error);
+            pendingRequests--;
+            this.checkAndReload(pendingRequests);
+          }
+        );
       }
     });
+
+    // Enviar lançamento de horas
+    if (
+      this.novoLancamento.desenvolvedor &&
+      this.novoLancamento.dataLancamento &&
+      this.novoLancamento.horas > 0
+    ) {
+      const formattedDate = new Date(this.novoLancamento.dataLancamento).toISOString().split('T')[0];
+      const lancamento = {
+        ...this.novoLancamento,
+        dataLancamento: formattedDate,
+      };
+
+      pendingRequests++;
+      this.aplicacaoService.addHorasAplicacao(this.aplicacaoId!, lancamento).subscribe(
+        () => {
+          pendingRequests--;
+          this.checkAndReload(pendingRequests);
+        },
+        (error: any) => {
+          console.error('Erro ao cadastrar lançamento de horas:', error);
+          pendingRequests--;
+          this.checkAndReload(pendingRequests);
+        }
+      );
+    } else {
+      console.warn('Lançamento de horas não preenchido corretamente.');
+    }
+
+    this.checkAndReload(pendingRequests);
   }
+
+
+  checkAndReload(pendingRequests: number): void {
+    if (pendingRequests === 0) {
+      this.router.navigate([this.router.url]).then(() => {
+        console.log('Página recarregada com sucesso!');
+      });
+    }
+  }
+
+
+
 
 }
