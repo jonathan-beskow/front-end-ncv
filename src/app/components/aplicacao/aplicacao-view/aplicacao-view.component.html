@@ -37,19 +37,13 @@
         </div>
       </div>
     </mat-card-content>
-    <div class="statusBar">
-      <strong>Status:</strong>
-      <span [class]="getStatusClass(aplicacao.statusAplicacaoDescricao || '')">
-        {{ aplicacao.statusAplicacaoDescricao || 'Status não disponível' }}
-      </span>
-    </div>
   </mat-card>
 
   <!-- Card de Histórico de Mudança -->
   <mat-card appearance="outlined" class="historico-card">
     <mat-card-title class="history-title">Histórico de Mudança</mat-card-title>
     <div *ngIf="aplicacao.historicoDeMudanca?.length; else noHistory">
-      <mat-card-content>
+      <mat-card-content class="history-info">
         <div *ngFor="let historico of aplicacao.historicoDeMudanca" class="history-item">
           <p>
             <strong>Status:</strong>

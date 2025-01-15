@@ -21,7 +21,6 @@
 }
 
 .sidenav a {
-  color: white;
   text-decoration: none;
 }
 
@@ -58,10 +57,12 @@ a {
 a:hover {
   background: linear-gradient(
     to right,
-    rgba(255, 140, 0, 1) 50%,
+    rgba(255, 255, 255, 1) 50%,
     rgba(2, 0, 36, 0.3) 50%
   );
   background-size: 200% 100%;
   background-position: left;
   border-radius: 0px !important;
-}
+ }
+ 
+
